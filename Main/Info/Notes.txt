@@ -1,0 +1,10 @@
+Work Flow
+1.	Include the direct x dependencies in one .h file.
+2.	Make sure you can declare com pointers in an easy way.
+	MS way is not preferred. This was done using third party .h file 
+	to declare com pointers.
+3.	Get the debug layer setup in separate .h and .cpp files
+4.	Create the device.
+5.	Declare command queue descriptor (needed to create command queue)
+	and setup its attributes.
+6.	Create command queue.
