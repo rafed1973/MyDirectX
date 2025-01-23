@@ -8,3 +8,9 @@ Work Flow
 5.	Declare command queue descriptor (needed to create command queue)
 	and setup its attributes.
 6.	Create command queue.
+7. Created a fence and fence value
+8. Created a method for the command queue to wait if the fence have not
+	the (desired value) created a windows event and waited for it to trigger
+9. Created a command list which is like fornt end and created command list allocator
+	Command Allocator does not cleared until the list is done with by the GPU
+10. Creating a window since we are ready to populate the command list
