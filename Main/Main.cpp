@@ -19,12 +19,22 @@ int main()
             //updating the window so we can interact with it
             DXWindow::Get().Update();
 
+            //Resizing window
+            if (DXWindow::Get().ShouldResize())
+            {
+                //Flushing the command Q so the swapchain resources are let go
+                DXContext::Get().Flush(DXWindow::GetFrameCount());
+                DXWindow::Get().Resize();
+            }
+
+            //============BEGIN DRAWING==================
             //creating a command list
             auto* cmdList = DXContext::Get().InitCommandList();
             
-            //here we can start adding commands to the list
-            // a lot of setup (Rendering)
+            //TO DO: Draw
 
+
+            //============FINISH DRAWING AND PRESENT==================
             //Excuting the command list
             DXContext::Get().ExeCommandList();
 

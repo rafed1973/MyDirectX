@@ -12,9 +12,14 @@ public:
 	void Update();
 	void Present();
 	void Shutdown();
+	void Resize();
 
 	inline bool ShouldClose() const {
 		return m_shouldClose;
+	}
+
+	inline bool ShouldResize() const {
+		return m_shouldResize;
 	}
 
 	static constexpr size_t GetFrameCount()
@@ -32,6 +37,11 @@ private:
 	HWND m_window = nullptr;
 	// a bool that keep track of the window state
 	bool m_shouldClose = false;
+	//a bool to track if the window size change
+	bool m_shouldResize = false;
+
+	UINT m_width = 1280;
+	UINT m_height = 720;
 
 	//swap chain com pointer
 	ComPointer<IDXGISwapChain3> m_swapChain;
