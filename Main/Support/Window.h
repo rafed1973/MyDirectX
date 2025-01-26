@@ -15,6 +15,10 @@ public:
 	void Resize();
 	void SetFullscreen(bool enabled);
 
+	//dealing with barriers and using commandlist
+	void BeginFrame(ID3D12GraphicsCommandList7* cmdlist); //this will make sure that we can draw on the resource
+	void EndFrame(ID3D12GraphicsCommandList7* cmdlist); //this will make sure that we are on the right stat to get present
+
 	inline bool ShouldClose() const {
 		return m_shouldClose;
 	}
@@ -62,6 +66,9 @@ private:
 
 	//com pointer to the swap chain bufferes
 	ComPointer<ID3D12Resource2> m_buffers[FrameCount];
+
+	//current buffer
+	size_t m_currentBufferIndex = 0;
 
 	//Singelton.
 public:

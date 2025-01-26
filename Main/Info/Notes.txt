@@ -26,6 +26,9 @@ Work Flow
 15. an ID3 12 resource is any thing that might live on the GPU
 16. a buffer in the swap chain is 2D texture
 17. There are steps to prepare the buffers so we can put them on the screen
+18. resource state is to tell GPU how is the block of memorey (Resource) is used
+19. All state changes done through memory barriers
+20. Note command lists execute on the driver and not the GPU. The driver goes to the GPU if there is a need.
 
 
 

@@ -34,8 +34,11 @@ int main()
             //creating a command list
             auto* cmdList = DXContext::Get().InitCommandList();
             
-            //TO DO: Draw
-
+            //inserting a resource barried in the command list of the type present to render target to befing drwing
+            DXWindow::Get().BeginFrame(cmdList);
+            
+            //inserting a resource barried in the command list of the type render target to present to show on screen
+            DXWindow::Get().EndFrame(cmdList);
 
             //============FINISH DRAWING AND PRESENT==================
             //Excuting the command list
