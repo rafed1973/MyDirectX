@@ -27,12 +27,19 @@ public:
 		return m_isFullscreen;
 	}
 
+	//declaing the number of swapchain frames or buffers and get them
+	static constexpr size_t FrameCount = 2;
 	static constexpr size_t GetFrameCount()
 	{
-		return 2;
+		return FrameCount;
 	}
 
 private:
+	//getting and realsing buffers
+	//before resizing a swap chaing buffer we need to release the buffers and then get them
+	bool GetBuffers();
+	void ReleaseBuffers();
+	
 	static LRESULT CALLBACK OnWindowMessage(HWND wnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 private:
@@ -52,6 +59,9 @@ private:
 
 	//swap chain com pointer
 	ComPointer<IDXGISwapChain3> m_swapChain;
+
+	//com pointer to the swap chain bufferes
+	ComPointer<ID3D12Resource2> m_buffers[FrameCount];
 
 	//Singelton.
 public:

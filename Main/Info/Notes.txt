@@ -21,5 +21,11 @@ Work Flow
 	for accessing several dxgi features. we did not need it before this step.
 	Swap chaing is created using the factory and not the device
 13. Handle swap buffer flushing and resizing
-14. 
+14. Understanding buffers inside the swap chain which is just a concept to communicate with the screen
+	you can not draw on the swap chain you need a buffer
+15. an ID3 12 resource is any thing that might live on the GPU
+16. a buffer in the swap chain is 2D texture
+17. There are steps to prepare the buffers so we can put them on the screen
+
+
 
