@@ -23,14 +23,19 @@ int main()
             auto* cmdList = DXContext::Get().InitCommandList();
             
             //here we can start adding commands to the list
-            // a lot of setup
-            // draw
+            // a lot of setup (Rendering)
 
             //Excuting the command list
             DXContext::Get().ExeCommandList();
 
+            //Present the swap chain
+            DXWindow::Get().Present();
+
             //show me on the screen
         }
+
+        //Flushing the command Q so the swapchain resources are let go
+        DXContext::Get().Flush(DXWindow::GetFrameCount());
 
         DXWindow::Get().Shutdown();
         DXContext::Get().Shutdown();

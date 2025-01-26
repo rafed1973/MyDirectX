@@ -2,6 +2,9 @@
 
 bool DXContext::Init()
 {
+	if (FAILED(CreateDXGIFactory2(0, IID_PPV_ARGS(&m_dxgiFactory))))
+	{ return false; }
+
 	if(FAILED(D3D12CreateDevice(nullptr, D3D_FEATURE_LEVEL_11_0, IID_PPV_ARGS(&m_device))))
 	{ return false; }
 	
@@ -48,8 +51,10 @@ void DXContext::Shutdown()
 	{
 		CloseHandle(m_fenceEvent);
 	}
+	m_fence.Release();
+	m_cmdQueue.Release();
 	m_device.Release();
-	m_device.Release();
+	m_dxgiFactory.Release();
 }
 
 void DXContext::SignalAndWait()
@@ -74,6 +79,7 @@ void DXContext::SignalAndWait()
 	//Now we need to check from the CPU side to see if GPU has finished
 	
 
+	//We did not do this in the example but left notes for further reference
 	//chekcing if the last complted fence value is less that the current one
 	//if it is then the gpu is still not finished
 	//still not that clear but I will continue

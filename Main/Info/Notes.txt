@@ -16,4 +16,8 @@ Work Flow
 	Command Allocator does not cleared until the list is done with by the GPU
 10. Creating a window since we are ready to populate the command list
 11. Create a window class then create a window to draw on
+12. Attach the window to swapchain. The creation of swap chaing is done after the window creation
+	in this example it is in window init. To create swap chain we need dxgi factory which is responsible
+	for accessing several dxgi features. we did not need it before this step.
+	Swap chaing is created using the factory and not the device
 

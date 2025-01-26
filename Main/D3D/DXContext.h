@@ -15,6 +15,15 @@ public:
 	void ExeCommandList();
 
 	//Helper functions
+	inline void Flush(size_t count) {
+		for (size_t i = 0; i < count; i++)
+			SignalAndWait();
+	}
+
+	inline ComPointer<IDXGIFactory7>& GetFactory() {
+		return m_dxgiFactory;
+	}
+
 	inline ComPointer<ID3D12Device10>& GetDevice (){
 		return m_device;
 	}
@@ -24,6 +33,8 @@ public:
 	}
 
 private:
+	//note the order these com pointers are created
+	ComPointer<IDXGIFactory7> m_dxgiFactory;
 	ComPointer<ID3D12Device10> m_device;
 	ComPointer<ID3D12CommandQueue> m_cmdQueue;
 	ComPointer<ID3D12CommandAllocator> m_cmdAllocator;
@@ -36,6 +47,7 @@ private:
 	HANDLE m_fenceEvent = nullptr;
 
 	//Singelton
+	//This is a structure to create a single instace from a certain class. It was used in multiple classes in this example.
 public:
 	DXContext(const DXContext&) = delete;
 	DXContext& operator=(const DXContext&) = delete;
