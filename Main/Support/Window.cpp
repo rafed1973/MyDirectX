@@ -111,9 +111,51 @@ void DXWindow::Resize()
     }
 }
 
+void DXWindow::SetFullscreen(bool enabled)
+{
+    //Update the window style
+    DWORD style = WS_OVERLAPPEDWINDOW | WS_VISIBLE;
+    DWORD exStyle = WS_EX_OVERLAPPEDWINDOW | WS_EX_APPWINDOW;
+    if (enabled)
+    {
+        style = WS_POPUP | WS_VISIBLE;
+        exStyle = WS_EX_APPWINDOW;
+    }
+    SetWindowLongW(m_window, GWL_STYLE, style);
+    SetWindowLongW(m_window, GWL_EXSTYLE, exStyle);
+
+    //Adjust window size
+    if (enabled) {
+        HMONITOR monitor = MonitorFromWindow(m_window, MONITOR_DEFAULTTOPRIMARY);
+        MONITORINFO monitorInfo{};
+        monitorInfo.cbSize = sizeof(monitorInfo);
+        if (GetMonitorInfoW(monitor, &monitorInfo))
+        {
+            SetWindowPos(
+                m_window, nullptr,
+                monitorInfo.rcMonitor.left, monitorInfo.rcMonitor.top,
+                monitorInfo.rcMonitor.right - monitorInfo.rcMonitor.left,
+                monitorInfo.rcMonitor.bottom - monitorInfo.rcMonitor.top,
+                SWP_NOZORDER
+            );
+        }
+        else 
+        {
+            ShowWindow(m_window, SW_MAXIMIZE);
+        }
+    }
+    
+
+    m_isFullscreen = enabled;
+}
+
 LRESULT DXWindow::OnWindowMessage(HWND wnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
     switch (msg) {
+    case WM_KEYDOWN:
+        if (wParam == VK_F11) {
+            Get().SetFullscreen(!Get().IsFullscreen());
+        }
     case WM_SIZE:
         //lParam is passed by the wimdow message and it has the height and width encoded
         //we are not doing the resizing if the window is minimized or maximaized

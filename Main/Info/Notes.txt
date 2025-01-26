@@ -20,4 +20,6 @@ Work Flow
 	in this example it is in window init. To create swap chain we need dxgi factory which is responsible
 	for accessing several dxgi features. we did not need it before this step.
 	Swap chaing is created using the factory and not the device
+13. Handle swap buffer flushing and resizing
+14. 
 

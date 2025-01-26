@@ -13,7 +13,10 @@ int main()
 
     if (DXContext::Get().Init() && DXWindow::Get().Init())
     {
-        //here where the program starts
+        //set window to full screen
+        DXWindow::Get().SetFullscreen(true);
+        
+        //the program main loop
         while(!DXWindow::Get().ShouldClose())
         {
             //updating the window so we can interact with it

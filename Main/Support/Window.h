@@ -13,6 +13,7 @@ public:
 	void Present();
 	void Shutdown();
 	void Resize();
+	void SetFullscreen(bool enabled);
 
 	inline bool ShouldClose() const {
 		return m_shouldClose;
@@ -20,6 +21,10 @@ public:
 
 	inline bool ShouldResize() const {
 		return m_shouldResize;
+	}
+
+	inline bool IsFullscreen() const {
+		return m_isFullscreen;
 	}
 
 	static constexpr size_t GetFrameCount()
@@ -42,6 +47,8 @@ private:
 
 	UINT m_width = 1280;
 	UINT m_height = 720;
+
+	bool m_isFullscreen = false;
 
 	//swap chain com pointer
 	ComPointer<IDXGISwapChain3> m_swapChain;
