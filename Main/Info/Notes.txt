@@ -29,6 +29,13 @@ Work Flow
 18. resource state is to tell GPU how is the block of memorey (Resource) is used
 19. All state changes done through memory barriers
 20. Note command lists execute on the driver and not the GPU. The driver goes to the GPU if there is a need.
+21. Dealing with Render Target Views, Descriptors and Descriptor Heaps
+22. Render target view "describes" how the render target functions
+23. descritors live on the GPU that is why we need a handle when we pass them (Can not pass a view just the handle)
+24. These descritors are created by descritor heaps
+	a) Create a descriptor heap descriptor
+	b) Create the heap
+	c) Place a descritor on the heap
 
 
 

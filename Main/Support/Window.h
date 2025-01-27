@@ -70,6 +70,12 @@ private:
 	//current buffer
 	size_t m_currentBufferIndex = 0;
 
+	//descritor heap to create a RTV descriptor
+	//pre caculate to advance to the next
+	ComPointer<ID3D12DescriptorHeap> m_rtvDescHeap;
+	D3D12_CPU_DESCRIPTOR_HANDLE m_rtvHandles[FrameCount];
+
+
 	//Singelton.
 public:
 	DXWindow(const DXWindow&) = delete;
