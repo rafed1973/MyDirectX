@@ -1,4 +1,5 @@
 #include "Window.h"
+#include <cassert>
 
 //===============================================
 bool DXWindow::Init()
@@ -83,6 +84,7 @@ bool DXWindow::Init()
     {
         m_rtvHandles[i] = firstHandle;
         m_rtvHandles[i].ptr += handleIncrement * i;
+        assert(m_rtvHandles[i].ptr != 0);
     }
     
     //Get swap chain buffers
